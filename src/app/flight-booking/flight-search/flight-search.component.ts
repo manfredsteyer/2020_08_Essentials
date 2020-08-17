@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { Flight } from '../model/flight';
+import { Flight } from '../../model/flight';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { FlightService, DummyFlightService } from './flight.service';
 
@@ -8,7 +8,7 @@ import { FlightService, DummyFlightService } from './flight.service';
   templateUrl: './flight-search.component.html',
   styleUrls: ['./flight-search.component.css'],
   providers: [
-    { provide: FlightService, useClass: DummyFlightService }
+    // { provide: FlightService, useClass: DummyFlightService }
   ]
 })
 export class FlightSearchComponent implements OnInit {

@@ -42,8 +42,8 @@
             </thead>
             <tr *ngFor="let f of flights" [ngStyle]="{ 'background-color': (f === selectedFlight) ? 'orange' : 'white' }">
                 <td>{{f.id}}</td>
-                <td>{{f.from}}</td>
-                <td>{{f.to}}</td>
+                <td>{{f.from | city:'short'}}</td>
+                <td>{{f.to | city:'long' }}</td>
                 <td>{{f.date | date:'dd.MM.yyy HH:mm'}}</td>
                 <td>
                     <a (click)="select(f)">Select</a> 

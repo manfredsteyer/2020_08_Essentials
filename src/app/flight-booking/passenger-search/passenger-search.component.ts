@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Flight } from '../model/flight';
-import { Passenger } from '../model/passenger';
+import { Flight } from '../../model/flight';
+import { Passenger } from '../../model/passenger';
 
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 
