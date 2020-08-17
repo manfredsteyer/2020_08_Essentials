@@ -40,7 +40,7 @@
                 <th></th>
             </tr>
             </thead>
-            <tr *ngFor="let f of flights" [ngStyle]="{ 'background-color': (f === selectedFlight) ? 'orange' : 'white' }">
+            <tr *ngFor="let f of flights | statusFilter:false" [ngStyle]="{ 'background-color': (f === selectedFlight) ? 'orange' : 'white' }">
                 <td>{{f.id}}</td>
                 <td>{{f.from | city:'short'}}</td>
                 <td>{{f.to | city:'long' }}</td>
