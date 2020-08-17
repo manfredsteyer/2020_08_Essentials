@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AirportService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   getFormattedName(airportName: string, fmt: string): string {
     let short, long;
@@ -36,5 +38,22 @@ export class AirportService {
       return long;
     }
     return short;
+  }
+
+  getFormattedNameFromServer(airportName: string, fmt: string): Observable<string> {
+
+    let url;
+
+    if (fmt === 'long') {
+      url = 'http://angular-at.azurewebsites.net/api/airport/fullName';
+    } else {
+      url = 'http://angular-at.azurewebsites.net/api/airport/code';
+    }
+
+    const params = { name: airportName };
+    const headers = { Accept: 'application/json' };
+
+    return this.http.get<string>(url, {params, headers});
+
   }
 }
