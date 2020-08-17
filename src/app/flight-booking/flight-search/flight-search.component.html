@@ -44,7 +44,7 @@
                 <td>{{f.id}}</td>
                 <td>{{f.from | city:'short'}}</td>
                 <td>{{f.to | city:'long' }}</td>
-                <td>{{f.date | date:'dd.MM.yyy HH:mm'}}</td>
+                <td [ngStyle]="{color: f.delayed | statusColor }">{{f.date | date:'dd.MM.yyy HH:mm'}}</td>
                 <td>
                     <a (click)="select(f)">Select</a> 
                 </td>
