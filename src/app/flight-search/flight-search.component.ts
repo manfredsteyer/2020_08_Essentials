@@ -1,11 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Flight } from '../model/flight';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
+import { FlightService, DummyFlightService } from './flight.service';
 
 @Component({
   selector: 'flight-search',
   templateUrl: './flight-search.component.html',
-  styleUrls: ['./flight-search.component.css']
+  styleUrls: ['./flight-search.component.css'],
+  providers: [
+    { provide: FlightService, useClass: DummyFlightService }
+  ]
 })
 export class FlightSearchComponent implements OnInit {
 
@@ -18,7 +22,9 @@ export class FlightSearchComponent implements OnInit {
 
   // private http: HttpClient;
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private flightService: FlightService,
+    private http: HttpClient) {
     // this.http = http;
    }
 
@@ -32,22 +38,14 @@ export class FlightSearchComponent implements OnInit {
     //   { id: 19, from: 'Frankfurt', to: 'Mallorca', date: '2020-08-17T19:45+02:00', delayed: false},
     // ];
 
-
-    const url = 'http://www.angular.at/api/flight/';
-    const params = new HttpParams()
-                        .set('from', this.from)
-                        .set('to', this.to);
-
-    const headers = new HttpHeaders()
-                        .set('X-Info', 'Manfrd was here!')
-                        .set('Accept', 'application/json');
-
-
-    this.http.get<Flight[]>(url, { params, headers }).subscribe(
-      flights => {
+    this.flightService.find(this.from, this.to).subscribe({
+      next: flights => {
           this.flights = flights;
+      },
+      error: err => {
+        console.error('err', err);
       }
-    );
+    });
 
   }
 
