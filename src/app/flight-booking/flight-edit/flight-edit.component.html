@@ -1,0 +1,23 @@
+<form [formGroup]="formGroup">
+    <input formControlName="id">
+    <input formControlName="from">
+    <input formControlName="to">
+    <input formControlName="date">
+    <input formControlName="delayed" type="checkbox">
+    <button (click)="save()">Save</button>
+
+    <pre>
+        {{formGroup.controls['from'].errors | json}}
+    </pre>
+</form>
+
+
+<h2>Dynamic</h2>
+
+<form [formGroup]="formGroup">
+
+    <div *ngFor="let meta of metaData">
+        <input [formControlName]="meta.name" [type]="meta.type">
+    </div>
+    
+</form>
