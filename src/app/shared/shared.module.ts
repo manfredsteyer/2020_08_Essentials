@@ -8,8 +8,20 @@ import { FlightValidationErrorsComponent } from './flight-validation-errors/flig
 
 @NgModule({
     imports: [CommonModule],
-    declarations: [CityPipe, StatusColorPipe, StatusFilterPipe, AsyncCityPipe, FlightValidationErrorsComponent],
+    declarations: [
+        CityPipe,
+        StatusColorPipe,
+        StatusFilterPipe,
+        AsyncCityPipe,
+        FlightValidationErrorsComponent
+    ],
     providers: [],
-    exports: [CityPipe, StatusColorPipe, StatusFilterPipe, AsyncCityPipe],
+    exports: [
+        CityPipe,
+        StatusColorPipe,
+        StatusFilterPipe,
+        AsyncCityPipe,
+        FlightValidationErrorsComponent
+    ],
 })
 export class SharedModule { }

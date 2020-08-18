@@ -17,6 +17,9 @@
                 pattern="[A-Za-zöäüÖÄÜß]*" 
                 class="form-control">
 
+            <flight-validation-errors [errors]="f?.controls['from']?.errors">
+            </flight-validation-errors>
+
             <div *ngIf="!f?.controls['from']?.valid">
                 ... Fehler ...
             </div>
