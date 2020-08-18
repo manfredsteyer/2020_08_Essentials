@@ -33,7 +33,12 @@
             <flight-card 
                 class="col-lg-3 col-md-4 col-sm-6 col-xs-12"
                 [item]="f" 
-                [(selected)]="basket[f.id]"></flight-card>
+                [(selected)]="basket[f.id]">
+                
+                <h1 class="top">Flight</h1>
+                <pre class="bottom">{{ f | json }}</pre>
+
+            </flight-card>
 
                 <!-- 
                 [selected]="basket[f.id]"

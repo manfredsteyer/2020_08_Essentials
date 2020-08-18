@@ -6,9 +6,14 @@
         <h2 class="title">{{item.from}} - {{item.to}}</h2>
     </div>
     <div class="content">
+            <ng-content select=".top"></ng-content>
+
             <p>Flight-No.: #{{item.id}}</p>
             <p>Date: {{item.date | date:'dd.MM.yyyy HH:mm'}}</p>
             <p><flight-status-toggle [(status)]="item.delayed"></flight-status-toggle></p>
+
+            <ng-content select=".bottom"></ng-content>
+
             <p>
                 <button
                     class="btn btn-default"
