@@ -5,11 +5,28 @@
     </div>
     <div class="content">
     
-    <form>
+    <form #f="ngForm">
     
         <div class="form-group">
             <label>From:</label>
-            <input name="from" [(ngModel)]="from" class="form-control">
+            <input 
+                name="from" 
+                [(ngModel)]="from"
+                required
+                minlength="3"
+                pattern="[A-Za-zöäüÖÄÜß]*" 
+                class="form-control">
+
+            <div *ngIf="!f?.controls['from']?.valid">
+                ... Fehler ...
+            </div>
+            <div *ngIf="f?.controls['from']?.hasError('required')">
+                ... Required ...
+            </div>
+            <pre *ngIf="f?.controls['from']?.errors">
+                ... {{ f?.controls['from']?.errors | json }} ...
+            </pre>            
+
         </div>
         <div class="form-group">
             <label>To:</label>
@@ -34,7 +51,7 @@
                 class="col-lg-3 col-md-4 col-sm-6 col-xs-12"
                 [item]="f" 
                 [(selected)]="basket[f.id]">
-                
+
                 <h1 class="top">Flight</h1>
                 <pre class="bottom">{{ f | json }}</pre>
 
