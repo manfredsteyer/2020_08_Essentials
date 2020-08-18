@@ -6,6 +6,7 @@ import { FlightSearchComponent } from './flight-search/flight-search.component'
 import { FlightService, DefaultFlightService } from './flight-search/flight.service';
 import { PassengerSearchComponent } from './passenger-search/passenger-search.component';
 import { FlightCardComponent } from './flight-search/flight-card/flight-card.component';
+import { FlightStatusToggleComponent } from './flight-search/flight-status-toggle/flight-status-toggle.component';
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import { FlightCardComponent } from './flight-search/flight-card/flight-card.com
   declarations: [
     FlightSearchComponent,
     PassengerSearchComponent,
-    FlightCardComponent
+    FlightCardComponent,
+    FlightStatusToggleComponent
   ],
   exports: [
     FlightSearchComponent,
