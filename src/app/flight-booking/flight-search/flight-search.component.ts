@@ -13,10 +13,16 @@ import { FlightService, DummyFlightService } from './flight.service';
 })
 export class FlightSearchComponent implements OnInit {
 
-  from: string;
-  to: string;
+  from = 'Graz';
+  to = 'Hamburg';
   flights: Array<Flight> = [];
   selectedFlight: Flight;
+
+  basket = {
+    3: true,
+    4: false,
+    5: true
+  };
 
   message: string;
 

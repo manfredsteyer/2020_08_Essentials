@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { FlightSearchComponent } from './flight-search/flight-search.component'
 import { FlightService, DefaultFlightService } from './flight-search/flight.service';
 import { PassengerSearchComponent } from './passenger-search/passenger-search.component';
+import { FlightCardComponent } from './flight-search/flight-card/flight-card.component';
 
 @NgModule({
   imports: [
@@ -18,7 +19,14 @@ import { PassengerSearchComponent } from './passenger-search/passenger-search.co
        useClass: DefaultFlightService
     }
   ],
-  declarations: [FlightSearchComponent, PassengerSearchComponent],
-  exports: [FlightSearchComponent, PassengerSearchComponent]
+  declarations: [
+    FlightSearchComponent,
+    PassengerSearchComponent,
+    FlightCardComponent
+  ],
+  exports: [
+    FlightSearchComponent,
+    PassengerSearchComponent
+  ]
 })
 export class FlightBookingModule { }
