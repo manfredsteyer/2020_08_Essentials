@@ -64,25 +64,12 @@ export class FlightSearchComponent implements OnInit {
     this.selectedFlight = flight;
   }
 
-  save(): void {
-
-    const url = 'http://www.angular.at/api/flight';
-
-    const headers = new HttpHeaders()
-            .set('Accept', 'application/json');
-
-    this.http
-    .post<Flight>(url, this.selectedFlight, { headers })
-    .subscribe({
-      next: flight => {
+  save() {
+    this.flightService.save(this.selectedFlight).subscribe(
+      flight => {
         this.selectedFlight = flight;
-        this.message = 'Success!';
-      },
-      error: errResponse => {
-        console.error('Error', errResponse);
-        this.message = 'Error: ';
       }
-    });
+    );
   }
 
 }

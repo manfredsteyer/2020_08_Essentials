@@ -2,7 +2,7 @@
 
 <p>ID: {{ id }}</p>
 <p>ShowDetails: {{ showDetails }}</p>
-
+<p>{{ error }}</p>
 <form [formGroup]="formGroup">
     <input formControlName="id">
     <input formControlName="from">
@@ -11,12 +11,13 @@
     <input formControlName="delayed" type="checkbox">
     <button (click)="save()">Save</button>
 
-    <pre>
+    <div *ngIf="formGroup.controls['from'].errors">
         {{formGroup.controls['from'].errors | json}}
-    </pre>
+    </div>
 </form>
 
 
+<!--
 <h2>Dynamic</h2>
 
 <form [formGroup]="formGroup">
@@ -26,3 +27,4 @@
     </div>
     
 </form>
+-->

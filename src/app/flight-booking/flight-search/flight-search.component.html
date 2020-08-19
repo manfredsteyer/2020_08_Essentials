@@ -7,7 +7,7 @@
     
     <form #f="ngForm" roundTrip route fromFieldName="from"  toFieldName="to">
         
-        <pre>{{f?.errors | json}}</pre>
+        <!-- <pre>{{f?.errors | json}}</pre> -->
 
         <div class="form-group">
             <label>From:</label>
@@ -28,9 +28,9 @@
             <div *ngIf="f?.controls['from']?.hasError('required')">
                 ... Required ...
             </div>
-            <pre *ngIf="f?.controls['from']?.errors">
+            <!-- <pre *ngIf="f?.controls['from']?.errors">
                 ... {{ f?.controls['from']?.errors | json }} ...
-            </pre>            
+            </pre>             -->
 
         </div>
         <div class="form-group">
@@ -40,7 +40,7 @@
             <div *ngIf="f?.controls['to']?.pending">
                 <marquee>... Bitte warten ... wir validieren ...</marquee>
             </div>
-            <pre>{{ f?.controls['to']?.errors | json }}</pre>
+            <!-- <pre>{{ f?.controls['to']?.errors | json }}</pre> -->
 
         </div>
     
@@ -63,8 +63,9 @@
                 [item]="f" 
                 [(selected)]="basket[f.id]">
 
-                <h1 class="top">Flight</h1>
-                <pre class="bottom">{{ f | json }}</pre>
+                <!-- Commented out demonstration for content projection -->
+                <!-- <h1 class="top">Flight</h1> -->
+                <!-- <pre class="bottom">{{ f | json }}</pre> -->
 
             </flight-card>
 

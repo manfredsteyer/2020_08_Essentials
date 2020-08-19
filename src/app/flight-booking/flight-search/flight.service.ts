@@ -11,6 +11,10 @@ export abstract class FlightService {
                                   //   v---- .subscribe(...)
   abstract find(from: string, to: string): Observable<Flight[]>;
 
+  abstract findById(id: string): Observable<Flight>;
+
+  abstract save(flight: Flight): Observable<Flight>;
+
 }
 
 @Injectable()
@@ -25,10 +29,30 @@ export class DefaultFlightService implements FlightService {
                         .set('to', to);
 
     const headers = new HttpHeaders()
-                        .set('X-Info', 'Manfrd was here!')
                         .set('Accept', 'application/json');
 
     return this.http.get<Flight[]>(url, { params, headers });
+  }
+
+  findById(id: string): Observable<Flight> {
+    const url = 'http://www.angular.at/api/flight';
+    const params = new HttpParams()
+                        .set('id', id);
+
+    const headers = new HttpHeaders()
+                        .set('Accept', 'application/json');
+
+    return this.http.get<Flight>(url, { params, headers });
+  }
+
+
+  save(flight: Flight): Observable<Flight> {
+    const url = 'http://www.angular.at/api/flight';
+
+    const headers = new HttpHeaders()
+            .set('Accept', 'application/json');
+
+    return this.http.post<Flight>(url, flight, { headers });
   }
 
 }
@@ -42,5 +66,16 @@ export class DummyFlightService implements FlightService {
       { id: 18, from: 'Frankfurt', to: 'Flagranti', date: '2020-08-17T19:30+02:00', delayed: false},
       { id: 19, from: 'Frankfurt', to: 'Mallorca', date: '2020-08-17T19:45+02:00', delayed: false},
     ]);
+  }
+
+  findById(id: string) {
+    console.warn('findById is not implemented for dummy flight service');
+    return null;
+  }
+
+  save(flight: Flight): Observable<Flight> {
+    console.warn('save is not implemented for dummy flight service');
+    console.warn('flight to save', flight);
+    return null;
   }
 }

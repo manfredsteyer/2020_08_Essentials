@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { validateCity } from '../../shared/validators/reactive-city-validator';
 import { ActivatedRoute } from '@angular/router';
+import { FlightService } from '../flight-search/flight.service';
 
 @Component({
   selector: 'flight-edit',
@@ -10,14 +11,16 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class FlightEditComponent implements OnInit {
 
-
   formGroup: FormGroup;
   metaData: any[];
 
   id: string;
   showDetails: string;
 
+  error: string;
+
   constructor(
+    private flightService: FlightService,
     private route: ActivatedRoute,
     private fb: FormBuilder) {
 
@@ -26,16 +29,19 @@ export class FlightEditComponent implements OnInit {
       this.route.params.subscribe(p => {
         this.id = p['id'];
         this.showDetails = p['showDetails'];
+
+        this.load(this.id);
       });
 
-    this.metaData = [
-      { name: 'id' },
-      { name: 'from' },
-      { name: 'to' },
-      { name: 'date' },
-      { name: 'delayed', type: 'checkbox' },
-
-    ];
+    // Metadata for dynamic form
+    // See commented out section in template too
+    // this.metaData = [
+    //   { name: 'id' },
+    //   { name: 'from' },
+    //   { name: 'to' },
+    //   { name: 'date' },
+    //   { name: 'delayed', type: 'checkbox' },
+    // ];
 
     this.formGroup = fb.group({
       id: [],
@@ -53,21 +59,33 @@ export class FlightEditComponent implements OnInit {
     });
 
     this.formGroup.valueChanges.subscribe(value => {
-      console.debug('form', value);
+      console.info('form', value);
     });
 
     this.formGroup.controls['from'].valueChanges.subscribe(value => {
-      console.debug('from', value);
+      console.info('from', value);
     });
+  }
 
+  load(id: string) {
+    this.flightService.findById(id).subscribe(
+      flight => this.formGroup.patchValue(flight)
+    );
   }
 
   save() {
     const flight = this.formGroup.value;
-    console.debug('save not impl.', flight);
+    this.flightService.save(flight).subscribe(
+      savedFlight => {
+        this.formGroup.patchValue(savedFlight);
+        this.error = '';
+      },
+      err => {
+        this.error = err.error;
+      }
+    );
   }
 
   ngOnInit(): void {
   }
-
 }
