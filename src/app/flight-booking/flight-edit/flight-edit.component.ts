@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { validateCity } from '../../shared/validators/reactive-city-validator';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FlightService } from '../flight-search/flight.service';
 
 @Component({
@@ -20,6 +20,7 @@ export class FlightEditComponent implements OnInit {
   error: string;
 
   constructor(
+    private router: Router,
     private flightService: FlightService,
     private route: ActivatedRoute,
     private fb: FormBuilder) {
@@ -79,6 +80,7 @@ export class FlightEditComponent implements OnInit {
       savedFlight => {
         this.formGroup.patchValue(savedFlight);
         this.error = '';
+        this.router.navigate(['/flight-search']);
       },
       err => {
         this.error = err.error;
