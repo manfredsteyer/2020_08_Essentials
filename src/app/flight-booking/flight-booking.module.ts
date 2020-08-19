@@ -8,6 +8,8 @@ import { PassengerSearchComponent } from './passenger-search/passenger-search.co
 import { FlightCardComponent } from './flight-search/flight-card/flight-card.component';
 import { FlightStatusToggleComponent } from './flight-search/flight-status-toggle/flight-status-toggle.component';
 import { FlightEditComponent } from './flight-edit/flight-edit.component';
+import { RouterModule } from '@angular/router';
+import { FLIGHT_BOOKING_ROUTES } from './flight-booking.routes';
 
 @NgModule({
   imports: [
@@ -15,6 +17,7 @@ import { FlightEditComponent } from './flight-edit/flight-edit.component';
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
+    RouterModule.forChild(FLIGHT_BOOKING_ROUTES)
   ],
   providers: [
     {
