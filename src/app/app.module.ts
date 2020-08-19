@@ -17,7 +17,12 @@ const DEBUG = true;
       BrowserModule,
       HttpClientModule,
       FlightBookingModule,
-      RouterModule.forRoot(APP_ROUTES)
+      RouterModule.forRoot(
+         APP_ROUTES,
+         {
+            useHash: true,
+            enableTracing: true
+         })
    ],
    declarations: [
       AppComponent,
