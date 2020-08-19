@@ -17,7 +17,6 @@
                 required
                 minlength="3"
                 pattern="[A-Za-zöäüÖÄÜß]*" 
-                [city]="['Graz', 'Hamburg', 'Zürich', 'Berlin', 'Wien', 'Bern']"
                 class="form-control">
 
             <flight-validation-errors [errors]="f?.controls['from']?.errors">
@@ -36,7 +35,7 @@
         </div>
         <div class="form-group">
             <label>To:</label>
-            <input name="to" [(ngModel)]="to" asyncCity class="form-control">
+            <input name="to" [(ngModel)]="to" class="form-control">
 
             <div *ngIf="f?.controls['to']?.pending">
                 <marquee>... Bitte warten ... wir validieren ...</marquee>
@@ -47,7 +46,7 @@
     
         <div class="form-group">
             <button 
-                [disabled]="!from || !to"
+                name="btnSearch"
                 (click)="search()"
                 class="btn btn-default">Search</button>
                 </div>

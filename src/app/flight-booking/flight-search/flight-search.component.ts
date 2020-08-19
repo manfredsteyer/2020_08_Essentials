@@ -1,14 +1,14 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { Flight } from '../../model/flight';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
-import { FlightService, DummyFlightService } from './flight.service';
+import { FlightService, DummyFlightService, DefaultFlightService } from './flight.service';
 
 @Component({
   selector: 'flight-search',
   templateUrl: './flight-search.component.html',
   styleUrls: ['./flight-search.component.css'],
   providers: [
-    // { provide: FlightService, useClass: DummyFlightService }
+    { provide: FlightService, useClass: DefaultFlightService }
   ]
 })
 export class FlightSearchComponent implements OnInit {
@@ -38,6 +38,11 @@ export class FlightSearchComponent implements OnInit {
   }
 
   search(): void {
+
+    if (!this.from || !this.to) {
+      return;
+    }
+
     // this.flights = [
     //   { id: 17, from: 'Frankfurt', to: 'Kognito', date: '2020-08-17T19:00+02:00', delayed: false},
     //   { id: 18, from: 'Frankfurt', to: 'Flagranti', date: '2020-08-17T19:30+02:00', delayed: false},
