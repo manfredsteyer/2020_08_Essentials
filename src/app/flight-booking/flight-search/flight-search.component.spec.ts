@@ -5,6 +5,7 @@ import { FlightBookingModule } from './../flight-booking.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FlightService, DummyFlightService } from './flight.service';
 import { By } from '@angular/platform-browser';
+import { RouterTestingModule } from '@angular/router/testing';
 
 fdescribe('FlightSearchComponent', () => {
   let component: FlightSearchComponent;
@@ -15,7 +16,8 @@ fdescribe('FlightSearchComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         FlightBookingModule,
-        HttpClientModule
+        HttpClientModule,
+        RouterTestingModule
       ],
       declarations: [
         /* FlightSearchComponent <-- already comes w/ FlightBookingModule */
@@ -45,7 +47,6 @@ fdescribe('FlightSearchComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(FlightSearchComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should have no flights initially', () => {
@@ -71,5 +72,43 @@ fdescribe('FlightSearchComponent', () => {
     expect(component.flights.length).toBe(3);
     expect(flightService.find).toHaveBeenCalledWith('Graz', 'Hamburg');
   });
+
+  it('should have a disabled search button w/o params', fakeAsync(() => {
+
+    // Intial Databinding, ngOnInit
+    fixture.detectChanges();
+    tick();
+
+    // Get input field for from
+    const from = fixture
+                  .debugElement
+                  .query(By.css('input[name=from]'))
+                  .nativeElement;
+
+    from.value = '';
+    from.dispatchEvent(new Event('input'));
+
+    // Get input field for to
+
+    const to = fixture
+               .debugElement
+               .query(By.css('input[name=to]'))
+               .nativeElement;
+
+    to.value = '';
+    to.dispatchEvent(new Event('input'));
+
+    fixture.detectChanges();
+    tick();
+
+    // get disabled
+    const disabled = fixture
+                     .debugElement
+                     .query(By.css('button'))
+                     .properties['disabled'];
+
+    expect(disabled).toBeTruthy();
+
+  }));
 
 });
