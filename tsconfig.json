@@ -12,6 +12,12 @@
     },
     {
       "path": "./src/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/logger-lib/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/logger-lib/tsconfig.spec.json"
     }
   ]
 }

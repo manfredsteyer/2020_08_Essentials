@@ -16,6 +16,14 @@
     "lib": [
       "es2017",
       "dom"
-    ]
+    ],
+    "baseUrl": ".",
+    "paths": {  
+      "logger-lib": [
+        "../projects/logger-lib/src/public-api.ts"
+        // "dist/logger-lib/logger-lib",
+        // "dist/logger-lib"
+      ]
+    }
   }
 }

@@ -80,7 +80,6 @@ export class FlightEditComponent implements OnInit {
       savedFlight => {
         this.formGroup.patchValue(savedFlight);
         this.error = '';
-        this.router.navigate(['/flight-search']);
       },
       err => {
         this.error = err.error;

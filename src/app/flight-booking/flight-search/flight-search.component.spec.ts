@@ -57,7 +57,6 @@ fdescribe('FlightSearchComponent', () => {
     component.to = '';
     component.search();
     expect(component.flights.length).toBe(0);
-    // nie flightService.find(...)
   });
 
   it('should load flights w/ from and to', () => {
@@ -71,9 +70,6 @@ fdescribe('FlightSearchComponent', () => {
 
     expect(component.flights.length).toBe(3);
     expect(flightService.find).toHaveBeenCalledWith('Graz', 'Hamburg');
-
-    // nie flightService.find('Graz', 'Hamburg')
-
   });
 
 });
