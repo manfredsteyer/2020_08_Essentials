@@ -23,7 +23,7 @@ export class DefaultFlightService implements FlightService {
   constructor(private http: HttpClient) { }
 
   find(from: string, to: string): Observable<Flight[]> {
-    const url = 'http://www.angular.at/api/flight/';
+    const url = 'http://www.angular.at/api/flight';
     const params = new HttpParams()
                         .set('from', from)
                         .set('to', to);
