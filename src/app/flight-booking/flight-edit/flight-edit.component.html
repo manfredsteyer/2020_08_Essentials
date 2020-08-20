@@ -3,6 +3,7 @@
 <p>ID: {{ id }}</p>
 <p>ShowDetails: {{ showDetails }}</p>
 <p>{{ error }}</p>
+<p *ngIf="formGroup.errors">{{ formGroup.errors | json }}</p>
 <form [formGroup]="formGroup">
     <input formControlName="id">
     <input formControlName="from">

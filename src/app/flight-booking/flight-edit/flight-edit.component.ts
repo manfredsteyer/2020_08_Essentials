@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { validateCity } from '../../shared/validators/reactive-city-validator';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FlightService } from '../flight-search/flight.service';
+import { validateRoundTrip } from 'app/shared/validators/reactive-roundtrip-validator';
 
 @Component({
   selector: 'flight-edit',
@@ -58,6 +59,8 @@ export class FlightEditComponent implements OnInit {
       date: [],
       delayed: []
     });
+
+    this.formGroup.setValidators(validateRoundTrip);
 
     this.formGroup.valueChanges.subscribe(value => {
       console.info('form', value);
